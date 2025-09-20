@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>قائمة كافتيريا الشباتي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d35400;
+            --primary-dark: #a84300;
+            --secondary: #f39c12;
+            --accent: #e74c3c;
+            --light: #f5f5f5;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --card: #ffffff;
+            --bg: #f8f9fa;
+            --success: #27ae60;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23fdf6e3" width="100" height="100"/><path fill="%23fae5c8" d="M0,0 L100,100"/></svg>');
+            background-size: 200px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 4px solid var(--secondary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .logo i {
+                font-size: 28px;
+                color: var(--secondary);
+            }
+
+            .logo h1 {
+                font-size: 28px;
+                margin: 0;
+                font-weight: 800;
+            }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        input[type="search"], select {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 16px;
+            flex: 1;
+            transition: all 0.3s;
+            background: white;
+        }
+
+            input[type="search"]:focus, select:focus {
+                outline: none;
+                border-color: var(--secondary);
+                box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+            }
+
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            scrollbar-width: none;
+        }
+
+            .category-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+        .category-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+            .category-btn:hover, .category-btn.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .media {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .media img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.5s;
+            }
+
+        .card:hover .media img {
+            transform: scale(1.05);
+        }
+
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .title {
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        .desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin: 0 0 15px 0;
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .price {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .calories {
+            font-size: 13px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border-radius: 50px;
+            border: 0;
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .btn:hover {
+                background: var(--primary-dark);
+            }
+
+            .btn i {
+                font-size: 14px;
+            }
+
+        .empty {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 18px;
+        }
+
+            .empty i {
+                font-size: 48px;
+                margin-bottom: 15px;
+                color: #e0e0e0;
+            }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .social-icons a {
+                color: white;
+                font-size: 20px;
+                transition: color 0.3s;
+            }
+
+                .social-icons a:hover {
+                    color: var(--secondary);
+                }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+            .modal-close:hover {
+                background: #c0392b;
+            }
+
+        .modal .media {
+            height: 300px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .controls {
+                max-width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .category-nav {
+                padding-bottom: 5px;
+            }
+
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .modal {
+                padding: 20px 15px;
+            }
+
+                .modal .media {
+                    height: 200px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <h1>كافتيريا الشباتي</h1>
+                </div>
+                <div class="controls">
+                    <input id="search" type="search" placeholder="ابحث عن وجبة أو وصف..." />
+                    <select id="filter">
+                        <option value="all">جميع الوجبات</option>
+                        <option value="shapaty">شباتي</option>
+                        <option value="sandwish">ساندويتشات</option>
+                        <option value="glapa">القلابات</option>
+                        <option value="maasop">المعصوب</option>
+                        <option value="areka">العريكة</option>
+                        <option value="tortela">تورتيلا وبرجر وجامبو</option>
+                        <option value="mashrop">المشروبات</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">الكل</button>
+            <button class="category-btn" data-category="shapaty">شباتي</button>
+            <button class="category-btn" data-category="sandwish">ساندويتشات</button>
+            <button class="category-btn" data-category="glapa">قلابات</button>
+            <button class="category-btn" data-category="maasop">معصوب</button>
+            <button class="category-btn" data-category="areka">عريكة</button>
+            <button class="category-btn" data-category="tortela">برجر وتورتيلا</button>
+            <button class="category-btn" data-category="mashrop">مشروبات</button>
+        </div>
+
+        <main>
+            <div id="grid" class="grid"></div>
+            <div id="empty" class="empty" style="display:none">
+                <i class="fas fa-search"></i>
+                <p>لا توجد وجبات تطابق البحث.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>كافتيريا الشباتي © 2023. جميع الحقوق محفوظة.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p>تواصل معنا: 0551234567</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="backdrop" class="modal-backdrop">
+        <div class="modal" role="dialog" aria-modal="true">
+            <button id="closeModal" class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // نموذج بيانات مع السعر والسعرات الحرارية
+        const meals = [
+            { id: 1, name: 'شباتي بيض سادة', desc: 'شباتي طازج مع بيض سادة لذيذ', price: 3.5, calories: 250, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+بيض+سادة' },
+            { id: 2, name: 'شباتي بيض وجبن', desc: 'شباتي مع بيض وجبنة ذائبة', price: 5.0, calories: 600, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+بيض+وجبن' },
+            { id: 3, name: 'شباتي تونة', desc: 'شباتي مع تونة طازجة وخضار', price: 6.0, calories: 720, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+تونة' },
+            { id: 4, name: 'شباتي جبن سائل', desc: 'شباتي مع جبن سائل طيب المذاق', price: 2.5, calories: 180, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+جبن+سائل' },
+            { id: 5, name: 'شباتي جبن شيدر', desc: 'شباتي مع جبن شيدر ممتاز', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+جبن+شيدر' },
+            { id: 6, name: 'شباتي شكشوكة', desc: 'شباتي مع شكشوكة بيض وخضار', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+شكشوكة' },
+            { id: 7, name: 'شباتي نوتيلا', desc: 'شباتي حلو مع نوتيلا وموز', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+نوتيلا' },
+            { id: 8, name: 'شباتي كبدة', desc: 'شباتي مع كبدة مقلية وبصل', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+كبدة' },
+            { id: 9, name: 'شباتي دجاج', desc: 'شباتي مع دجاج مشوي وصوص خاص', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+دجاج' },
+            { id: 10, name: 'شباتي مشكل', desc: 'شباتي مع خليط من الحشوات اللذيذة', price: 4.0, calories: 450, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+مشكل' },
+            { id: 11, name: 'شباتي سادة', desc: 'شباتي طازج فقط', price: 1.0, calories: 150, tags: ['shapaty'], img: 'https://via.placeholder.com/600x400/f5f5f5/333?text=شباتي+سادة' },
+        ];
+
+        const grid = document.getElementById('grid');
+        const empty = document.getElementById('empty');
+        const search = document.getElementById('search');
+        const filter = document.getElementById('filter');
+        const backdrop = document.getElementById('backdrop');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        function render(list) {
+            grid.innerHTML = '';
+            if (!list.length) {
+                empty.style.display = 'block';
+                return;
+            }
+
+            empty.style.display = 'none';
+            for (const m of list) {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+              <div class="card-badge">الأكثر مبيعاً</div>
+              <div class="media"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>
+              <div class="content">
+                <h3 class="title">${m.name}</h3>
+                <p class="desc">${m.desc}</p>
+                <div class="meta">
+                  <div>
+                    <div class="price">${m.price.toFixed(2)} ر.س</div>
+                    <div class="calories"><i class="fas fa-fire"></i> ${m.calories} سعرة حرارية</div>
+                  </div>
+                  <button class="btn" data-id="${m.id}"><i class="fas fa-info-circle"></i> تفاصيل</button>
+                </div>
+                <div class="tags">${m.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+              </div>`;
+                grid.appendChild(card);
+            }
+        }
+
+        function openModal(meal) {
+            modalContent.innerHTML = `
+            <div class="media"><img src="${meal.img}" alt="${meal.name}"></div>
+            <h2 style="margin:10px 0; color: var(--primary);">${meal.name}</h2>
+            <p style="color:var(--gray); line-height: 1.6;">${meal.desc}</p>
+            <div style="margin:15px 0; display: flex; align-items: center; gap: 15px;">
+              <div style="font-weight:800;color:var(--primary);font-size:24px;">${meal.price.toFixed(2)} ر.س</div>
+              <div style="display:flex;align-items:center;gap:5px;color:var(--gray);">
+                <i class="fas fa-fire"></i> ${meal.calories} سعرة حرارية
+              </div>
+            </div>
+            <div style="margin-bottom:15px; display: flex; gap: 8px;">${meal.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            <button class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
+              <i class="fas fa-shopping-cart"></i> إضافة إلى الطلب
+            </button>
+          `;
+            backdrop.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        grid.addEventListener('click', e => {
+            const btn = e.target.closest('.btn');
+            if (!btn) return;
+            const id = Number(btn.dataset.id);
+            const meal = meals.find(x => x.id === id);
+            if (meal) openModal(meal);
+        });
+
+        closeModal.addEventListener('click', () => {
+            backdrop.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        backdrop.addEventListener('click', e => {
+            if (e.target === backdrop) {
+                backdrop.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        function applyFilters() {
+            const q = search.value.trim().toLowerCase();
+            const f = filter.value;
+            const result = meals.filter(m => {
+                if (f !== 'all' && !m.tags.includes(f)) return false;
+                if (q === '') return true;
+                return m.name.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q) || m.tags.join(' ').toLowerCase().includes(q);
+            });
+            render(result);
+        }
+
+        // إضافة فعالية لأزرار التصنيف
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filter.value = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        search.addEventListener('input', applyFilters);
+        filter.addEventListener('change', applyFilters);
+
+        // تهيئة الصفحة
+        render(meals);
+    </script>
+</body>
+</html>
