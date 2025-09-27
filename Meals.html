@@ -3,22 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>قائمة وجبات مطعم ذانوفا - اليوم الوطني السعودي</title>
+    <title>قائمة وجبات مطعم ذانوفا</title>
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #006C35; /* أخضر العلم السعودي */
-            --primary-dark: #005128; /* أخضر غامق */
-            --secondary: #FFFFFF; /* أبيض */
-            --accent: #CE1126; /* أحمر العلم السعودي */
+            --primary: #FF8C00; /* برتقالي أكثر إشراقًا */
+            --primary-dark: #CC7000; /* برتقالي غامق */
+            --secondary: #000000; /* أسود */
+            --accent: #FF5722; /* برتقالي محمر للتأكيد */
             --light: #F5F5F5; /* فاتح للخلفيات */
             --dark: #212121; /* أسود غامق للنصوص */
             --gray: #757575; /* رمادي للنصوص الثانوية */
             --card: #FFFFFF; /* أبيض للبطاقات */
-            --bg: #F8FFF5; /* لون خلفية أخضر فاتح جدًا */
+            --bg: #FFF8F0; /* لون خلفية برتقالي فاتح جدًا */
             --success: #27ae60;
-            --national-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23F8FFF5" width="100" height="100"/><path fill="%23CE1126" opacity="0.1" d="M0,0 L100,100"/></svg>');
         }
 
         * {
@@ -33,7 +32,7 @@
             margin: 0;
             padding: 0;
             color: var(--dark);
-            background-image: var(--national-pattern);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23FFF8F0" width="100" height="100"/><path fill="%23FFEBCD" d="M0,0 L100,100"/></svg>');
             background-size: 200px;
         }
 
@@ -48,24 +47,10 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 20px 0;
-            border-bottom: 4px solid var(--accent);
+            border-bottom: 4px solid var(--secondary);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
         }
-
-            header::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23CE1126" opacity="0.1" d="M0,0 L100,100"/></svg>');
-                background-size: 200px;
-                z-index: 1;
-            }
 
         .header-content {
             display: flex;
@@ -73,37 +58,7 @@
             gap: 20px;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            z-index: 2;
         }
-        .national-day-badge {
-            background-color: #c8e6c9;
-            padding: 10px 15px;
-            border-radius: 12px;
-            font-size: 4vw; /* يتغير مع عرض الشاشة */
-            font-weight: bold;
-            color: #1b5e20;
-            text-align: center;
-            display: inline-block;
-            max-width: 90%;
-        }
-
-            .national-day-badge .highlight {
-                font-size: 6vw; /* الرقم يكبر أكثر */
-                color: #2e7d32;
-            }
-
-        /* لأجهزة أكبر من 768px (تابلت + كمبيوتر) */
-        @media (min-width: 768px) {
-            .national-day-badge {
-                font-size: 20px;
-            }
-
-                .national-day-badge .highlight {
-                    font-size: 32px;
-                }
-        }
-
 
         .logo {
             display: flex;
@@ -113,44 +68,16 @@
 
             .logo i {
                 font-size: 28px;
-                color: var(--secondary);
+                color: var(--secondary); /* تغيير لون الأيقونة إلى الأسود */
             }
 
             .logo h1 {
                 font-size: 28px;
                 margin: 0;
                 font-weight: 800;
-                color: var(--secondary);
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                color: var(--secondary); /* تغيير لون النص إلى الأسود */
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* إضافة ظل للنص لتحسين القراءة */
             }
-
-        .national-day-badge {
-            background-color: var(--accent);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 15px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
 
         .controls {
             display: flex;
@@ -174,7 +101,7 @@
             input[type="search"]:focus, select:focus {
                 outline: none;
                 border-color: var(--primary);
-                box-shadow: 0 0 0 3px rgba(0, 108, 53, 0.2);
+                box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
             }
 
         /* Category Navigation */
@@ -363,33 +290,17 @@
 
         /* Footer */
         footer {
-            background: var(--primary);
+            background: var(--secondary); /* استخدام الأسود للخلفية */
             color: white;
             padding: 30px 0;
             text-align: center;
             margin-top: 40px;
-            position: relative;
-            overflow: hidden;
         }
-
-            footer::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23CE1126" opacity="0.1" d="M0,0 L100,100"/></svg>');
-                background-size: 200px;
-                z-index: 1;
-            }
 
         .footer-content {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            position: relative;
-            z-index: 2;
         }
 
         .social-icons {
@@ -405,7 +316,7 @@
             }
 
                 .social-icons a:hover {
-                    color: var(--accent);
+                    color: var(--primary); /* تغيير لون التمرير إلى البرتقالي */
                 }
 
         /* Modal */
@@ -454,7 +365,7 @@
         }
 
             .modal-close:hover {
-                background: #a00d1e;
+                background: #c0392b;
             }
 
         .modal .media {
@@ -463,38 +374,6 @@
             border-radius: 15px;
             overflow: hidden;
         }
-
-        /* National Day Special Styling */
-        .national-day-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            background: #c8e6c9;
-            border: 2px solid #1b5e20;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #1b5e20;
-            /* لجعل الشكل يبدو مرسوم */
-            border-style: dashed;
-            box-shadow: 2px 2px 0 #2e7d32, 0 2px 0 #2e7d32 inset;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            position: relative;
-        }
-
-            .national-day-badge i {
-                font-size: 22px;
-            }
-
-            .national-day-badge .highlight {
-                font-size: 28px;
-                color: #2e7d32;
-                background: #e8f5e9;
-                padding: 2px 6px;
-                border-radius: 6px;
-                border: 1px dashed #2e7d32;
-            }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -509,11 +388,6 @@
 
             .grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-
-            .national-day-badge {
-                margin: 10px 0;
-                align-self: center;
             }
         }
 
@@ -543,19 +417,11 @@
             <div class="header-content">
                 <div class="logo">
                     <img src="images/logo.png" alt="شعار مطعم دانوفا" style="width:100px; height:auto;" />
+                    <!--<i class="fas fa-utensils"></i>-->
                     <h1>مطعم دانوفا</h1>
-                    
-
-
                 </div>
                 <div class="controls">
-                    <div class="national-day-badge">
-                        <i class="fas fa-flag"></i>
-                        بمناسبة اليوم الوطني
-                        <span class="highlight">95</span>
-                        خصم 15%
-                    </div>
-                    <input id="search" type="hidden" placeholder="ابحث عن وجبة ..." />
+                    <input id="search" type="search" placeholder="ابحث عن وجبة ..." />
                     <select id="filter">
                         <!--<option value="all">جميع الوجبات</option>-->
                         <option value="shapaty">شباتي</option>
@@ -575,7 +441,11 @@
 
     <div class="container">
         <div class="category-nav">
-            <!--<button class="category-btn " data-category="all">الكل</button>-->
+            <!--<div style="text-align: center; margin-bottom: 20px;">
+                <button id="printBtn" class="btn"><i class="fas fa-print"></i> طباعة قائمة الوجبات</button>
+            </div>-->
+
+            <!--<button class="category-btn active" data-category="all">الكل</button>-->
             <button class="category-btn active" data-category="shapaty">شباتي</button>
             <button class="category-btn" data-category="sandwish">ساندويتشات</button>
             <button class="category-btn" data-category="glapa">قلابات</button>
@@ -602,15 +472,15 @@
                 <p>مطعم دانوفا</p>
                 <p>
                     الفرع الرئيسي بالمملكه - الرياض - حي العليا - شارع العليا العام
+
                 </p>
-                <p>ادارة المطعم: 0567094448</p>
                 <!--<div class="social-icons">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
                     <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>-->
-                <p style="margin-top: 15px; font-weight: bold;">كل عام وأنتم بخير بمناسبة اليوم الوطني السعودي</p>
+                <p>ادارة المطعم: 0567094448</p>
             </div>
         </div>
     </footer>
@@ -624,7 +494,6 @@
             <div id="modalContent"></div>
         </div>
     </div>
-
 
     <script>
         // نموذج بيانات مع السعر والسعرات الحرارية
@@ -734,37 +603,37 @@
                 const card = document.createElement('article');
                 card.className = 'card';
                 card.innerHTML = `
-                          <div class="media"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>
-                          <div class="content">
-                            <h3 class="title">${m.name}</h3>
+                      <div class="media"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>
+                      <div class="content">
+                        <h3 class="title">${m.name}</h3>
 
-                            <div class="meta">
-                              <div>
-                                <div class="price">${m.price.toFixed(2)} ر.س</div>
-                                <div class="calories"><i class="fas fa-fire"></i> ${m.calories} سعرة حرارية</div>
-                              </div>
-                            </div>
-                          </div>`;
+                        <div class="meta">
+                          <div>
+                            <div class="price">${m.price.toFixed(2)} ر.س</div>
+                            <div class="calories"><i class="fas fa-fire"></i> ${m.calories} سعرة حرارية</div>
+                          </div>
+                        </div>
+                      </div>`;
                 grid.appendChild(card);
             }
         }
 
         function openModal(meal) {
             modalContent.innerHTML = `
-                        <div class="media"><img src="${meal.img}" alt="${meal.name}"></div>
-                        <h2 style="margin:10px 0; color: var(--primary);">${meal.name}</h2>
-                        <p style="color:var(--gray); line-height: 1.6;">${meal.desc}</p>
-                        <div style="margin:15px 0; display: flex; align-items: center; gap: 15px;">
-                          <div style="font-weight:800;color:var(--primary);font-size:24px;">${meal.price.toFixed(2)} ر.س</div>
-                          <div style="display:flex;align-items:center;gap:5px;color:var(--gray);">
-                            <i class="fas fa-fire"></i> ${meal.calories} سعرة حرارية
-                          </div>
-                        </div>
-                        <div style="margin-bottom:15px; display: flex; gap: 8px;">${meal.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-                        <button class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
-                          <i class="fas fa-shopping-cart"></i> إضافة إلى الطلب
-                        </button>
-                      `;
+                    <div class="media"><img src="${meal.img}" alt="${meal.name}"></div>
+                    <h2 style="margin:10px 0; color: var(--primary);">${meal.name}</h2>
+                    <p style="color:var(--gray); line-height: 1.6;">${meal.desc}</p>
+                    <div style="margin:15px 0; display: flex; align-items: center; gap: 15px;">
+                      <div style="font-weight:800;color:var(--primary);font-size:24px;">${meal.price.toFixed(2)} ر.س</div>
+                      <div style="display:flex;align-items:center;gap:5px;color:var(--gray);">
+                        <i class="fas fa-fire"></i> ${meal.calories} سعرة حرارية
+                      </div>
+                    </div>
+                    <div style="margin-bottom:15px; display: flex; gap: 8px;">${meal.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                    <button class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
+                      <i class="fas fa-shopping-cart"></i> إضافة إلى الطلب
+                    </button>
+                  `;
             backdrop.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -814,7 +683,8 @@
         filter.addEventListener('change', applyFilters);
 
         // تهيئة الصفحة
-        render(meals.filter(e => e.tags == "shapaty"));
+               render(meals.filter(e => e.tags == "shapaty"));
+
 
 
 
@@ -828,41 +698,41 @@
 
             const printWindow = window.open('', '', 'width=900,height=700');
             printWindow.document.write(`
-            <html lang="ar" dir="rtl">
-            <head>
-                <meta charset="UTF-8">
-                <title>قائمة الوجبات</title>
-                <style>
-                    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; color: #333; padding: 20px; }
-                    h1 { text-align: center; color: #FF8C00; margin-bottom: 10px; }
-                    h2.category { text-align: right; color: #FF5722; margin: 20px 0 10px 0; border-bottom: 2px solid #FF8C00; padding-bottom: 5px; }
-                    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
-                    .card { border: 1px solid #f0f0f0; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-                    .card img { width: 100%; height: 150px; object-fit: cover; }
-                    .content { padding: 15px; }
-                    .title { font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #FF8C00; }
-                    .price { font-weight: 700; color: #FF8C00; margin-bottom: 5px; }
-                    .calories { font-size: 13px; color: #757575; }
-                </style>
-            </head>
-            <body>
-                <h1>قائمة وجبات مطعم ذانوفا</h1>
-                <h2 class="category">${categoryName}</h2>
-                <div class="grid">
-                    ${mealsFiltered.map(m => `
-                        <div class="card">
-                            <img src="${m.img}" alt="${m.name}">
-                            <div class="content">
-                                <div class="title">${m.name}</div>
-                                <div class="price">${m.price.toFixed(2)} ر.س</div>
-                                <div class="calories"><i class="fas fa-fire"></i> ${m.calories} سعرة حرارية</div>
-                            </div>
+        <html lang="ar" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <title>قائمة الوجبات</title>
+            <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; color: #333; padding: 20px; }
+                h1 { text-align: center; color: #FF8C00; margin-bottom: 10px; }
+                h2.category { text-align: right; color: #FF5722; margin: 20px 0 10px 0; border-bottom: 2px solid #FF8C00; padding-bottom: 5px; }
+                .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+                .card { border: 1px solid #f0f0f0; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+                .card img { width: 100%; height: 150px; object-fit: cover; }
+                .content { padding: 15px; }
+                .title { font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #FF8C00; }
+                .price { font-weight: 700; color: #FF8C00; margin-bottom: 5px; }
+                .calories { font-size: 13px; color: #757575; }
+            </style>
+        </head>
+        <body>
+            <h1>قائمة وجبات مطعم ذانوفا</h1>
+            <h2 class="category">${categoryName}</h2>
+            <div class="grid">
+                ${mealsFiltered.map(m => `
+                    <div class="card">
+                        <img src="${m.img}" alt="${m.name}">
+                        <div class="content">
+                            <div class="title">${m.name}</div>
+                            <div class="price">${m.price.toFixed(2)} ر.س</div>
+                            <div class="calories"><i class="fas fa-fire"></i> ${m.calories} سعرة حرارية</div>
                         </div>
-                    `).join('')}
-                </div>
-            </body>
-            </html>
-        `);
+                    </div>
+                `).join('')}
+            </div>
+        </body>
+        </html>
+    `);
             printWindow.document.close();
             printWindow.focus();
             printWindow.print();
